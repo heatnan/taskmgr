@@ -4,20 +4,11 @@ header("Content-Type:text/html;charset=utf-8");
 	{
 		require_once("connect_db.php");
 		
-		
-		
-	
-		
-		
 		$sql = "select `rec_id`,`name`,`status`,`desc` from task";
-	//	echo $sql;
 
 		$result = $mysqli->query($sql);
 		$num = $result->num_rows;
 		
-		
-		
-		//
 		$pagesize = 3;
 		
 		
@@ -53,15 +44,7 @@ header("Content-Type:text/html;charset=utf-8");
 			{
 				echo "<tr onclick=\"hilight(this)\"; ondblclick=\"hilight1(this)\"  ><th>$row[0]</th><th>$row[1]</th><th>$row[2]</th><th>$row[3]</th></tr>";
 			}
-		/*
-        while($row=mysql_fetch_row($res)){
-            echo "<tr>";
-            for($i=0; $i<$colums; $i++){
-                echo "<td>$row[$i]</td>";
-            }
-            echo "</tr>";
-        }
-		*/
+		
 			echo "</table>";
 			
 			echo "<div style = 'margin-top:20px;margin-left:30px' >";
