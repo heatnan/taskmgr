@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" language="javascript">
+			function GetQueryString(name)
+			{
+				var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r!=null)return  unescape(r[2]); return null;
+			}
+			
+			
+			function PostDataToServer(task_id)
+			{
+				
+				var title = document.getElementById('edit1').value;
+				var expect_finish_date= document.getElementById('edit2').value;
+				var desc = document.getElementById('edit3').value;
+				var module_id=document.getElementById('selecte1').value;
+				//alert(expect_finish_date);
+				var xmlhttp = new XMLHttpRequest();
+				var url = "php/task/newtask_insert.php";
+				url = url +"?id="+ task_id+"&title=" + title + "&expect_finish_date=" + expect_finish_date + "&desc=" + desc + "&module_id=" + module_id;
+				//alert(url);
+				xmlhttp.open("POST",url,true);
+				xmlhttp.send();
+				
+				xmlhttp.onreadystatechange = function()
+				{
+					if(xmlhttp.readyState==4)
+					{
+						if(xmlhttp.status==200)
+						{
+							alert(xmlhttp.responseText);
+						}
+					
+					}
+				
+				}
+			}
+			
+			function LoadDataFromServer(task_id)
+			{
+				
+				var xmlhttp = new XMLHttpRequest();
+				var url = "php/task/newtask_insert.php";
+				url = url + "?id=" + task_id; 
+				xmlhttp.open("GET",url,true);
+				xmlhttp.send();
+				
+				xmlhttp.onreadystatechange = function(){
+					if(xmlhttp.readyState==4){
+						if(xmlhttp.status==200)
+						{
+						
+							var taskDetail =xmlhttp.responseText;
+							
+							var json_ans = eval ('('+taskDetail+')');	
+							document.getElementById('edit1').value=json_ans.name;
+							document.getElementById('edit2').value=json_ans.expect_finish_date;
+							document.getElementById('edit3').value=json_ans.desc;
+							document.getElementById('selecte1').value = json_ans.module_id;
+							
+						}
+					
+					}
+				
+				
+				}
+				
+			}
+			function SubmitToServer()
+			{
+				var task_id = GetQueryString("id");
+				if(!task_id)
+				{
+					task_id = 0;
+					
+				}
+				PostDataToServer(task_id);
+			}
+			
+			var  task_id = GetQueryString("id");
+			if(task_id)
+			{
+				LoadDataFromServer(task_id);
+			}
+		</script>
+		<style>
+			#newtask{
+				width:800px;
+				height:600px;
+				position:absolute;
+				left:50%;
+				top:50%;
+				border:5px solid gray;
+				margin-left:-400px;
+				margin-top:-300px;
+				background-color:white;
+			}
+			label{
+				margin-top:30px;
+				margin-left:20px;
+				margin-bottom:30px;
+				font-size:60%;
+				
+			}
+			.oneline{
+				margin-right:400px;
+			}
+			.big_input{
+				margin-top:30px;
+				width:600px;
+				height:350px;
+				margin-left:60px;
+				cols:40;
+				rows:5;
+				
+				
+			}
+		</style>
+	</head>
+	
+	
+	<body class = "bg_main">
+		
+	
+		<div>
+			<h1><font size="20">new task</font><h1>
+			<form id="newtask" >
+				
+				<div>
+					
+					<label for="module">分类</label>
+					<select name="module" id = "selecte1">
+						<option value=1>学习</option>
+						<option value=2>工作</option>
+						<option value=3>生活</option>
+					</select>
+					<td><label for="title" >标题：</label> <input type="text" name="title" id="edit1" required="required"></td> 
+					
+					 
+				</div>
+				
+				<label for="finish_date">预计完成日期：</label><input class="Wdate"  name="finish_date" id ="edit2" type="text" value="2015-07-08" onClick="WdatePicker()"> 
+				
+			
+				<div>
+					<label for="task_desc" class="oneline">任务详细：</label>
+					<textarea name="task_desc" class="big_input" id="edit3"> </textarea>
+				</div>
+				
+				<input type="button" value="提交" onclick="SubmitToServer()" > 
+				
+				
+				
+			</form>
+		</div>
+	</body>
+
+</html>
+
+
+
