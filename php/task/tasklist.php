@@ -3,7 +3,9 @@
 	<head>
 		
 		<meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<?php
+			echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\"/>";
+		?>
 		<script type="text/javascript" language="javascript">
 			
 			var theObj;
@@ -12,42 +14,37 @@
 			function hilight(obj){
 				if(theObj!=null){theObj.style.background = "#fff";}
 				if(theObj = obj){obj.style.background = "red";}
-			//obj.style.background = "red";
+			
 			}
 			
 			function hilight1(obj){
-			//	if(theObj1!=null){theObj1.style.background = "#fff";}
-			//	if(theObj1 = obj){obj.style.background = "yellow";}
-			//obj.style.background = "red";
-			//	var tmp = obj.cells;
-			//	alert(tmp[0].innerHTML);
 			  var task_id = obj.cells[0].innerHTML;
 			  var url = "../../newtask.html";
 			  window.location.href = url + "?id=" + task_id;
 			}
-			/*
-			funciton dcclick(){
-				var rows=document.getElementById("tasktbl").rows;
-				if(rows.length>0)
-				{
-					for(var i=0;i<rows.length;i++)
-					{
-						(funciton(i)
+			
+			function SetDoneStatus(task_id)
+			{
+				var xmlhttp = new XMLHttpRequest();
+				var url = "taskoperate.php";
+				url = url + "?id=" + task_id + "&operate_type=change_status" +"&to_status=30"; 
+				xmlhttp.open("GET",url,true);
+				xmlhttp.send();
+				xmlhttp.onreadystatechange = function(){
+					if(xmlhttp.readyState==4){
+						if(xmlhttp.status==200)
+						{
+							var taskDetail =xmlhttp.responseText;
+							if(taskDetail=="success")
 							{
-								
-								var temp=rows[i].cells[0].childNodes[1].value;  
-								var obj=rows[i];  
-								obj.ondblclick=function(){alert(temp);};  
-									
+								location.reload();
 							}
-								
-						)(i)
+						}
+					
 					}
 				}
 			}
 			
-			window.onload=function(){ dcclick();}
-			*/
 		</script>
 		<style>
 			#tasklist{
@@ -67,6 +64,10 @@
 			}
 			.lth{
 			
+			}
+			.bg_main {
+				font-family: sans-serif;
+				background-color: #323B55;
 			}
 		</style>
 	</head>

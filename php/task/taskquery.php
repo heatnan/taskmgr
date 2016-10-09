@@ -45,7 +45,7 @@ header("Content-Type:text/html;charset=utf-8");
 			
 			while($row = $page_result->fetch_row())
 			{
-				echo "<tr onclick=\"hilight(this)\"; ondblclick=\"hilight1(this)\"><th>$row[0]</th><th>$row[1]</th><th>$row[2]</th><th>$row[3]</th><th><input type = 'button' value = 'ok' onclick = \"SetDoneStatus()\"></th></tr>";
+				echo "<tr onclick=\"hilight(this)\"; ondblclick=\"hilight1(this)\"><th>$row[0]</th><th>$row[1]</th><th>$row[2]</th><th>$row[3]</th><th><input type = 'button' value = 'ok' onclick = \"SetDoneStatus($row[0])\"></th></tr>";
 			}
 		
 			echo "</table>";
