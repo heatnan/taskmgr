@@ -63,7 +63,6 @@ CREATE TABLE IF NOT EXISTS `task_detail`(
 INSERT INTO `user`(`account`,`password`,`nickname`,`email`)
 	VALUES('heatnan','1234','heat','964465194@qq.com');
 	
-
 INSERT INTO `module`(`type`,`name`,`deleted`,`created`)
 	VALUES(1,'Ñ§Ï°','0',NOW()),
 		(2,'¹¤×÷','0',NOW()),
