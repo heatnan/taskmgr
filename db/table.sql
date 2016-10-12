@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `user`(
+ï»¿CREATE TABLE IF NOT EXISTS `user`(
 	`rec_id` INT(11) NOT NULL AUTO_INCREMENT,
 	`account`  VARCHAR(20) NOT NULL DEFAULT '' ,
 	`password` VARCHAR(40) NOT NULL DEFAULT '' ,
@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS `module`(
 CREATE TABLE IF NOT EXISTS `task`(
 	`rec_id` INT(11) NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(150) NOT NULL DEFAULT '',
-	`private` ENUM('0','1','2') NOT NULL DEFAULT '0' COMMENT '0 Ë½ÓÐ 1 È¦×Ó¿É¼û',
-	`status` TINYINT(4) NOT NULL DEFAULT 10 COMMENT '5ÒÑÈ¡Ïû  10  ²Ý¸å 20 Á¢Ïî 30 Ö´ÐÐÖÐ 40 ²¿·ÖÍê³É 50 ÖÐÍ¾È¡Ïû 60 Íê³É',
+	`private` ENUM('0','1','2') NOT NULL DEFAULT '0' COMMENT '0 ç§æœ‰ 1 åœˆå­å¯è§',
+	`status` TINYINT(4) NOT NULL DEFAULT 10 COMMENT '5å·²å–æ¶ˆ  10  è‰ç¨¿ 20 ç«‹é¡¹ 30 æ‰§è¡Œä¸­ 40 éƒ¨åˆ†å®Œæˆ 50 ä¸­é€”å–æ¶ˆ 60 å®Œæˆ',
 	`creator_id` INT(11) NOT NULL,
 	`module_id` TINYINT(4) NOT NULL,
 	`desc` TEXT NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `task_detail`(
 	`rec_id` INT(11) NOT NULL AUTO_INCREMENT,
 	`task_id` INT(11) NOT NULL,
 	`operator_id` INT(11) NOT NULL,
-	`operate_type` TINYINT(4) NOT NULL DEFAULT '1' COMMENT ' 1 Ìí¼ÓÈÎÎñ½øÕ¹',
+	`operate_type` TINYINT(4) NOT NULL DEFAULT '1' COMMENT ' 1 æ·»åŠ ä»»åŠ¡è¿›å±•',
 	`desc` TEXT NOT NULL,
 	`created` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
 	PRIMARY KEY(`rec_id`),
@@ -62,12 +62,13 @@ CREATE TABLE IF NOT EXISTS `task_detail`(
 
 INSERT INTO `user`(`account`,`password`,`nickname`,`email`)
 	VALUES('heatnan','1234','heat','964465194@qq.com');
+
 	
 INSERT INTO `module`(`type`,`name`,`deleted`,`created`)
-	VALUES(1,'Ñ§Ï°','0',NOW()),
-		(2,'¹¤×÷','0',NOW()),
-		(3,'ÔË¶¯','0',NOW()),
-		(4,'ÓÎÍæ','0',NOW()),
-		(5,'¾­¼Ã','0',NOW()),
-		(6,'Éú»î','0',NOW()),
-		(7,'ÆäËû','0',NOW());
+	VALUES(1,'å­¦ä¹ ','0',NOW()),
+		(2,'å·¥ä½œ','0',NOW()),
+		(3,'è¿åŠ¨','0',NOW()),
+		(4,'æ¸¸çŽ©','0',NOW()),
+		(5,'ç»æµŽ','0',NOW()),
+		(6,'ç”Ÿæ´»','0',NOW()),
+		(7,'å…¶ä»–','0',NOW());
