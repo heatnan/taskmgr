@@ -5,6 +5,43 @@
     <meta charset="utf-8">
     <title>User	Login</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" language="javascript">	
+		function CheckUserIsLegal()
+		{
+			var username = document.getElementById('edit1').value;
+			var password = document.getElementById('edit2').value;
+			
+			if(!username || !password)
+			{
+				alert("请输入姓名和密码");
+				return ;
+			}
+			var xmlhttp = new XMLHttpRequest();
+			var url = "php/task/userlogin.php";
+			url = url + "?username=" + username + "&password=" +password;
+			xmlhttp.open("POST",url,true);
+			xmlhttp.send();
+			xmlhttp.onreadystatechange = function()
+			{
+				if(xmlhttp.readyState==4)
+				{
+					if(xmlhttp.status==200)
+					{
+						var result = xmlhttp.responseText;
+						alert(result);
+						if(result=="wrong")
+						{
+							alert("用户名或者密码错误");
+						}
+						else if(result == "success")
+						{
+							document.location = "php/task/mainpage.php";
+						}
+					}	
+				}		
+			}
+		}
+	</script>		
 	
 	<style>
 		#heat-login{
@@ -21,12 +58,12 @@
 </head>
  
 <body class = "bg_main">
-    <form id="heat-login" action="php/task/userlogin.php" method="post">
+    <form id="heat-login" >
         <label for="username" class = "display">username</label>
-		<input type="text" name="username" class="placeholder login_input" placeholder="heatnan@163.com" >
+		<input type="text" name="username" id="edit1" class="placeholder login_input" placeholder="heatnan@163.com" >
         <label for="password" class = "display">password</label>
-		<input type="password" name="password" class="placeholder login_input" placeholder="password" >
-        <input type="submit" class="login_btn"  value="Log In">
+		<input type="password" name="password" id="edit2" class="placeholder login_input" placeholder="password" >
+        <input type="button" class="login_btn"  value="Log In" onclick="CheckUserIsLegal()">
     </form>
 </body>
  
