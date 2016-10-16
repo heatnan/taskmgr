@@ -69,12 +69,32 @@
 				font-family: sans-serif;
 				background-color: #323B55;
 			}
+			#list{
+				width:800px;
+				height:700px;
+				margin-left:-400px;
+				margin-top:-350px;
+				position:absolute;
+				top:50%;
+				left:50%;
+				background-color:white;
+			}
+			.header{
+				margin-left:300px;
+			}
+			#tasktbl{
+				margin-left:50px;
+			}
+			#page_bar{
+				margin-left:130px;
+				margin-top:20px;
+			}
 		</style>
 	</head>
 		
 	<body class="bg_main">
-		<h1>任务列表</h1>
-		<div>
+		<div id="list">
+		<div class="header"><h1>任务列表</h1></div>
 		<?php
 			require_once("taskquery.php");
 		?>
