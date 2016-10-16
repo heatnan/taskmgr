@@ -84,11 +84,21 @@
 				}
 				PostDataToServer(task_id);
 			}
-			
-			var  task_id = GetQueryString("id");
-			if(task_id)
+			function OnLoad()
 			{
-				LoadDataFromServer(task_id);
+				var  task_id = GetQueryString("id");
+				if(task_id)
+				{
+					LoadDataFromServer(task_id);
+				}
+				else
+				{
+					var today = new Date();
+					//alert(today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate());
+					default_date = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
+					//alert(default_date);
+					document.getElementById('edit2').value=default_date;
+				}
 			}
 		</script>
 		<style>
@@ -129,7 +139,7 @@
 	</head>
 	
 	
-	<body class = "bg_main">
+	<body class = "bg_main" onload="OnLoad()">
 		<div>
 			<form id="newtask" >
 				<div id="container">
@@ -145,7 +155,7 @@
 					</div>
 					
 					<div class="oneline">
-						<label for="finish_date">预计完成日期：</label><input class="Wdate"  name="finish_date" id ="edit2" type="text" value="2015-07-08" onClick="WdatePicker()"> 
+						<label for="finish_date">预计完成日期：</label><input class="Wdate"  name="finish_date" id ="edit2" type="text" onClick="WdatePicker()"> 
 					</div>
 			
 					<div class="oneline">
