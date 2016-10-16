@@ -2,7 +2,10 @@
 header("Content-Type:text/html;charset=utf-8");
 	function showTaskList()
 	{
-		session_start();
+		if(!isset($_SESSION))
+		{
+			session_start();
+		}
 		$creator_id = $_SESSION['user_id'];
 		require_once("connect_db.php");
 		
