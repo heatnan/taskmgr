@@ -11,8 +11,6 @@
 				var r = window.location.search.substr(1).match(reg);
 				if(r!=null)return  unescape(r[2]); return null;
 			}
-			
-			
 			function PostDataToServer(task_id)
 			{
 				
@@ -20,7 +18,13 @@
 				var expect_finish_date= document.getElementById('edit2').value;
 				var desc = encodeURIComponent(document.getElementById('edit3').value);
 				var module_id=document.getElementById('selecte1').value;
-				//alert(expect_finish_date);
+				
+				if(!title)
+				{
+					alert("标题不能为空");
+					return ;
+				}
+				
 				var xmlhttp = new XMLHttpRequest();
 				var url = "php/task/newtask_insert.php";
 				url = url +"?id="+ task_id+"&title=" + title + "&expect_finish_date=" + expect_finish_date + "&desc=" + desc + "&module_id=" + module_id;
@@ -35,6 +39,7 @@
 						if(xmlhttp.status==200)
 						{
 							alert(xmlhttp.responseText);
+							OnLoad();
 						}
 					
 					}
@@ -94,10 +99,10 @@
 				else
 				{
 					var today = new Date();
-					//alert(today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate());
 					default_date = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
-					//alert(default_date);
 					document.getElementById('edit2').value=default_date;
+					document.getElementById('edit1').value="";
+					document.getElementById('edit3').value="";
 				}
 			}
 		</script>
