@@ -37,20 +37,15 @@ header("Content-Type:text/html;charset=utf-8");
 		if($page_num > 0)
 		{
 			 
-			 echo "<table id ='tasktbl' style=' border-color: #efefef;' border='1px' cellpadding='5px' cellspacing='0px'><tr>";
-			/*
-			 for($i=0;$i<$colums;$i++)
-			 {
-				$info = $page_result->fetch_field_direct($i);
-				echo "<th>$info->name</th>";
-			 }
-			*/
-			echo "<th>编号</th><th>分类</th><th>任务</th><th>状态</th><th>详细</th><th>计划完成日期</th><th>创建日期</th><th>操作</th>";
+			echo "<table cellspacing=\"0\" cellpadding=\"0\"><tr>";
+
+			echo "<th class='hide'>id</th><th>编号</th><th>分类</th><th>任务</th><th>状态</th><th>详细</th><th>计划完成日期</th><th>创建日期</th><th>操作</th>";
 			echo "</tr>";
-			
+			$item_no = $pagesize*($page-1)+1;
 			while($row = $page_result->fetch_row())
 			{
-				echo "<tr onclick=\"hilight(this)\"; ondblclick=\"hilight1(this)\"><th>$row[0]</th><th>$row[1]</th><th>$row[2]</th><th>$row[3]</th><th>$row[4]</th><th>$row[5]</th><th>$row[6]</th><th><input type = 'button' value = 'ok' onclick = \"SetDoneStatus($row[0])\"></th></tr>";
+				echo "<tr ondblclick=\"hilight1(this)\"><td class='hide'>$row[0]</td><td>$item_no</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td><td>$row[4]</td><td>$row[5]</td><td>$row[6]</td><td><input type = 'button' value = 'ok' onclick = \"SetDoneStatus($row[0])\"></td></tr>";
+				$item_no = $item_no + 1;
 			}
 		
 			echo "</table>";

@@ -4,19 +4,15 @@
 		
 		<meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
 		<?php
-			echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\"/>";
+			echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/style.css\"/>";
+			echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/tablecloth.css\"/>";
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../../js/tablecloth.js\"></script>";
 		?>
 		<script type="text/javascript" language="javascript">
 			
 			var theObj;
 			var theObj1;
-			
-			function hilight(obj){
-				if(theObj!=null){theObj.style.background = "#fff";}
-				if(theObj = obj){obj.style.background = "red";}
-			
-			}
-			
+					
 			function hilight1(obj){
 			  var task_id = obj.cells[0].innerHTML;
 			  var url = "../../newtask.html";
@@ -82,8 +78,17 @@
 			.header{
 				margin-left:300px;
 			}
+			.hide
+			{
+				display:none;
+			}
 			#tasktbl{
 				margin-left:50px;
+				border-color:#efefef;
+				border:1px;
+				cellpadding:5px;
+				cellspacing:0px;   
+				background-color:blue;
 			}
 			#page_bar{
 				margin-left:130px;
