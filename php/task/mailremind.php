@@ -3,7 +3,7 @@
 	require_once("connect_db.php");
 	
 	$sql = "select rec_id,account,nickname,email from user ";
-	
+	echo $sql >> /tmp/mail_test.log;
 	$users_msg = $mysqli->query($sql);
 	
 	$user_num = $users_msg->num_rows;
@@ -19,6 +19,7 @@
 			if($user_id&&$user_email)
 			{
 				$sql = "select name,module_id,desc,expect_finish_date,created from task where creator_id = $user_id and status = 10";
+				echo $sql >> /tmp/mail_test.log;
 				$tasks = $mysqli->query($sql);
 				if($tasks_num->num_rows>0)
 				{
@@ -32,6 +33,8 @@
 						$mail_msg.= "创建于".$task_create."预计完成于".$task_expect_time."的事务".$task_desc."还未完成，加油！\n";
 						
 					}
+					echo $user_email >> /tmp/mail_test.log;
+					echo $mail_msg >> /tmp/mail_test.log;
 					postmail($user_email,'come on,baby',$mail_msg);
 				}
 			}
