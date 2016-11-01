@@ -1,5 +1,5 @@
 ﻿<?php
-	
+	error_reporting(E_ALL & ~E_NOTICE);
 	require_once("connect_db.php");
 	
 	$sql = "select rec_id,account,nickname,email from user ";
@@ -21,7 +21,8 @@
 				$sql = "select name,module_id,desc,expect_finish_date,created from task where creator_id = $user_id and status = 10";
 				//echo $sql >> /tmp/mail_test.log;
 				$tasks = $mysqli->query($sql);
-				if($tasks_num->num_rows>0)
+				$tasks_num = $tasks->num_rows;
+				if($tasks_num>0)
 				{
 					$mail_msg = $user_nickname."有一些事情提醒下你！\n";
 					while($task_row = $tasks->fetch_row())
