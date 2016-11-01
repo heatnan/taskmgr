@@ -18,7 +18,7 @@
 			$user_email = $row[3];
 			if($user_id&&$user_email)
 			{
-				$sql = "select name,module_id,desc,expect_finish_date,created from task where creator_id = $user_id and status = 10";
+				$sql = "select `name`,module_id,`desc`,expect_finish_date,created from task where creator_id = $user_id and status = 10";
 				//echo $sql >> /tmp/mail_test.log;
 				$tasks = $mysqli->query($sql);
 				$tasks_num = $tasks->num_rows;
