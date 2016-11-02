@@ -1,6 +1,8 @@
 ﻿<?php
 	error_reporting(E_ALL & ~E_NOTICE);
 	require_once("connect_db.php");
+	require_once('class.phpmailer.php');
+	include('class.smtp.php');
 	
 	$sql = "select rec_id,account,nickname,email from user ";
 	//echo $sql >> /tmp/mail_test.log;
@@ -37,6 +39,7 @@
 					//echo $user_email >> /tmp/mail_test.log;
 					//echo $mail_msg >> /tmp/mail_test.log;
 					postremindmail($mysqli,$user_email,$mail_msg,$user_id,$user_nickname);
+					sleep(5);
 				}
 			}
 		}
@@ -68,8 +71,7 @@
 		//error_reporting(E_ALL);
 		error_reporting(E_STRICT);
 		date_default_timezone_set('Asia/Shanghai');//设定时区东八区
-		require_once('class.phpmailer.php');
-		include('class.smtp.php');
+		
 		$mail             = new PHPMailer(); //new一个PHPMailer对象出来
 	  //  $body            = eregi_replace("[\]",'',$body); //对邮件内容进行必要的过滤
 		$mail->CharSet ="utf-8";//设定邮件编码，默认ISO-8859-1，如果发中文此项必须设置，否则乱码
