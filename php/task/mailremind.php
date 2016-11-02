@@ -9,7 +9,7 @@
 	$user_num = $users_msg->num_rows;
 	
 	if($user_num > 0)
-	{
+	{  
 		while($row = $users_msg->fetch_row())
 		{
 			$user_id = $row[0];
@@ -56,7 +56,7 @@
 			$error_msg = substr($post_ans,0,1000);
 		}
 		$sql = "INSERT INTO mailsendrecord(`user_id`,`user_nickname`,`is_sucess`,`error_msg`,`created`) VALUES($user_id,'$user_nickname','$is_sucess','$error_msg',now())";
-		echo $sql;
+		//echo $sql;
 		$mysqli->query($sql);
 		
 	}

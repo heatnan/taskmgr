@@ -14,7 +14,7 @@ header("Content-Type:text/html;charset=utf-8");
 		$result = $mysqli->query($sql);
 		$num = $result->num_rows;
 		
-		$pagesize = 3;
+		$pagesize = 6;
 		
 		
 		$pages = intval($num/$pagesize);
