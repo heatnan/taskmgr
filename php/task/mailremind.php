@@ -36,14 +36,32 @@
 					}
 					//echo $user_email >> /tmp/mail_test.log;
 					//echo $mail_msg >> /tmp/mail_test.log;
-					postmail($user_email,'come on,baby',$mail_msg);
+					postremindmail($mysqli,$user_email,$mail_msg,$user_id,$user_nickname);
 				}
 			}
 		}
 	}
+	$mysqli->close();
+	function postremindmail($mysqli,$user_email,$mail_msg,$user_id,$user_nickname)
+	{
+		$post_ans = postmail($user_email,'come on,baby',$mail_msg,$user_nickname);
+		$is_success = 0;
+		$error_msg = "";
+		if(!strcmp($post_ans,"success"))
+		{
+			$is_success = 1;
+		}
+		else
+		{
+			$error_msg = substr($post_ans,0,1000);
+		}
+		$sql = "INSERT INTO mailsendrecord(`user_id`,`user_nickname`,`is_sucess`,`error_msg`,`created`) VALUES($user_id,'$user_nickname','$is_sucess','$error_msg',now())";
+		echo $sql;
+		$mysqli->query($sql);
+		
+	}
 	
-	
-	function postmail($to,$subject = '',$body = '')
+	function postmail($to,$subject = '',$body = '',$nick='dear')
 	{
 		//Author:Jiucool WebSite: http://www.jiucool.com
 		//$to 表示收件人地址 $subject 表示邮件标题 $body表示邮件正文
@@ -65,19 +83,19 @@
 		$mail->Port       = 25;                   // SMTP服务器的端口号
 		$mail->Username   = 'heat_nan@163.com';  // SMTP服务器用户名，PS：我乱打的
 		$mail->Password   = 'W964465194';         // SMTP服务器密码
-		$mail->SetFrom('heat_nan@163.com', 'heat_nan');
+		$mail->SetFrom('heat_nan@163.com', 'taskmgr');
 		//$mail->AddReplyTo('xxx@xxx.xxx','who');
 		$mail->Subject    = $subject;
 		$mail->AltBody    = 'To view the message, please use an HTML compatible email viewer!'; // optional, comment out and test
 		$mail->MsgHTML($body);
 		$address = $to;
-		$mail->AddAddress($address, 'wangxiangnan');
+		$mail->AddAddress($address, $nick);
 		//$mail->AddAttachment("images/phpmailer.gif");      // attachment
 		//$mail->AddAttachment("images/phpmailer_mini.gif"); // attachment
 		if(!$mail->Send()) {
-			echo 'Mailer Error: ' . $mail->ErrorInfo;
+			return "failed" . $mail->ErrorInfo;
 		} else {
-			echo "success";
+			return "success";
 		}
 	}
 

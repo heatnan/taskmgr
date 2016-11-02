@@ -59,17 +59,16 @@ CREATE TABLE IF NOT EXISTS `task_detail`(
 	CONSTRAINT `FK_TASK_DETAIL_OPERATOR_ID` FOREIGN KEY (`operator_id`) REFERENCES `user`(`rec_id`)
 )ENGINE = INNODB DEFAULT CHARSET = utf8;
 
+CREATE TABLE IF NOT EXISTS `mailsendrecord`(
+	`rec_id` INT(11) NOT NULL AUTO_INCREMENT,
+	`user_id` INT(11) NOT NULL,
+	`user_nickname` VARCHAR(40) NOT NULL,
+	`is_sucess` TINYINT(4) NOT NULL,
+	`error_msg` VARCHAR(1024) NOT NULL DEFAULT '',
+	`created` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+	PRIMARY KEY(`rec_id`),
+	CONSTRAINT `FK_MIAL_SEND_RECORD_ID` FOREIGN KEY (`user_id`) REFERENCES `user`(`rec_id`)
+)ENGINE = INNODB DEFAULT CHARSET = utf8;
 
 
-INSERT INTO `user`(`account`,`password`,`nickname`,`email`)
-	VALUES('heatnan','1234','heat','964465194@qq.com');
 
-	
-INSERT INTO `module`(`type`,`name`,`deleted`,`created`)
-	VALUES(1,'学习','0',NOW()),
-		(2,'工作','0',NOW()),
-		(3,'运动','0',NOW()),
-		(4,'游玩','0',NOW()),
-		(5,'经济','0',NOW()),
-		(6,'生活','0',NOW()),
-		(7,'其他','0',NOW());
