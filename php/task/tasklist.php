@@ -90,9 +90,51 @@
 				cellspacing:0px;   
 				background-color:blue;
 			}
-			#page_bar{
-				margin-left:130px;
-				margin-top:20px;
+			.paginate-container{
+				margin-top: 20px;
+				margin-bottom: 15px;
+				text-align: center;
+			}
+			.paginate-container .pagination{
+				display: inline-block;
+			}
+			.pagination a, .pagination span, .pagination em {
+				position: relative;
+				float: left;
+				padding: 7px 12px;
+				margin-left: -1px;
+				font-size: 13px;
+				font-style: normal;
+				font-weight: 600;
+				color: #4078c0;
+				white-space: nowrap;
+				vertical-align: middle;
+				cursor: pointer;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				background: #fff;
+				border: 1px solid #e5e5e5;
+			}
+			.pagination::before {
+				display: table;
+				content: "";
+			}
+			.pagination::after {
+				display: table;
+				clear: both;
+				content: "";
+			}
+			a {
+				color: #4078c0;
+				text-decoration: none;
+			}
+			.pagination .current, .pagination .current:hover {
+				z-index: 3;
+				color: #fff;
+				background-color: #4078c0;
+				border-color: #4078c0;
 			}
 		</style>
 	</head>

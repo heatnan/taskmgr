@@ -49,8 +49,8 @@ header("Content-Type:text/html;charset=utf-8");
 			}
 		
 			echo "</table>";
-			
-			echo "<div id='page_bar'>";
+			echo "<div class='paginate-container'>";
+			echo "<div class='pagination'>";
 			
 			if($page!=1)
 			{
@@ -60,7 +60,10 @@ header("Content-Type:text/html;charset=utf-8");
 			
 			for($i=1;$i<=$pages;$i++)
 			{
-				echo "<a href=\"tasklist.php?page=$i\"> $i </a>";
+				if($page != $i)
+					echo "<a href=\"tasklist.php?page=$i\"> $i </a>";
+				else
+					echo "<em class='current'>$i</em>";
 			}
 			
 			if($page<$pages)
@@ -68,6 +71,8 @@ header("Content-Type:text/html;charset=utf-8");
 				$tmp_page = $page + 1;
 				echo "<a href=\"tasklist.php?page=$tmp_page\"> 下一页 </a>";
 			}
+			
+			echo "</div>";
 			echo "</div>";
 		}
 		
