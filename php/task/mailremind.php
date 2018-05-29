@@ -81,7 +81,7 @@
 		// 2 = messages only
 		$mail->SMTPAuth   = true;                  // 启用 SMTP 验证功能
 		//$mail->SMTPSecure = "ssl";                 // 安全协议，可以注释掉
-		$mail->Host       = 'smtp.163.com';      // SMTP 服务器
+		$mail->Host       = 'smtp.sina.com';      // SMTP 服务器
 		$mail->Port       = 25;                   // SMTP服务器的端口号
 		$mail->Username   = 'heat_nan@sina.com';  // SMTP服务器用户名，PS：我乱打的
 		$mail->Password   = '123456demo';         // SMTP服务器密码
