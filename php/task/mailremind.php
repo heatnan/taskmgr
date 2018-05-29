@@ -83,9 +83,9 @@
 		//$mail->SMTPSecure = "ssl";                 // 安全协议，可以注释掉
 		$mail->Host       = 'smtp.163.com';      // SMTP 服务器
 		$mail->Port       = 25;                   // SMTP服务器的端口号
-		$mail->Username   = 'heat_nan@163.com';  // SMTP服务器用户名，PS：我乱打的
-		$mail->Password   = 'W964465194';         // SMTP服务器密码
-		$mail->SetFrom('heat_nan@163.com', 'taskmgr');
+		$mail->Username   = 'heat_nan@sina.com';  // SMTP服务器用户名，PS：我乱打的
+		$mail->Password   = '123456demo';         // SMTP服务器密码
+		$mail->SetFrom('heat_nan@sina.com', 'taskmgr');
 		//$mail->AddReplyTo('xxx@xxx.xxx','who');
 		$mail->Subject    = $subject;
 		$mail->AltBody    = 'To view the message, please use an HTML compatible email viewer!'; // optional, comment out and test
